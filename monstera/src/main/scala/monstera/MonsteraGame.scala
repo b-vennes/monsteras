@@ -3,6 +3,7 @@ package monstera
 import indigo.scenes.{Scene, SceneName}
 import indigo.shared.collections.NonEmptyList
 import indigo.shared.events.FrameTick
+import indigo.shared.time.Millis
 import indigo.shared.{Context, Outcome, Startup}
 import indigo.{
   AssetCollection,
@@ -62,7 +63,11 @@ object MonsteraGame extends IndigoGame[Unit, Unit, Model, ViewModel]:
   ): Outcome[ViewModel] =
     Outcome(
       ViewModel(
-        Assets.assets.BgMaterial,
+        Background(
+          0,
+          Millis(0),
+          Millis(500)
+        ),
         Monstera.findBitmap(0),
         Coffee(
           (242, 111),
@@ -92,4 +97,4 @@ object MonsteraGame extends IndigoGame[Unit, Unit, Model, ViewModel]:
       model: Model,
       viewModel: ViewModel
   ): Outcome[SceneUpdateFragment] =
-    viewModel.render()
+    viewModel.render

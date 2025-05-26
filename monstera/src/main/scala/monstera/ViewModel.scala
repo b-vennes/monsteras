@@ -7,26 +7,27 @@ import indigo.shared.scenegraph.{Graphic, SceneUpdateFragment}
 import indigo.shared.time.Seconds
 
 final case class ViewModel(
-    backgroundBitmap: Bitmap,
+    background: Background,
     monsteraBitmap: Bitmap,
     coffee: Coffee
 ):
   def update(model: Model, delta: Seconds, dice: Dice): Outcome[ViewModel] =
     Outcome(
       copy(
+        background = background.update(delta.toMillis),
         monsteraBitmap = Monstera.findBitmap(model.monsteraAge),
         coffee = coffee.update(delta, dice)
       )
     )
 
-  def render(): Outcome[SceneUpdateFragment] =
+  def render: Outcome[SceneUpdateFragment] =
     Outcome(
       SceneUpdateFragment(
         Graphic(
           400,
           240,
-          backgroundBitmap
-        ),
+          background.render
+        ).moveTo(0, 0),
         Graphic(
           400,
           240,

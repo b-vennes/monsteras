@@ -32,7 +32,7 @@ final case class Coffee(
           32,
           32,
           Assets.assets.SteambgMaterial
-        ).moveTo(260, 100),
+        ).moveTo(260, 100)
       )
     ).flatMap: current =>
       steam
@@ -167,9 +167,9 @@ object Coffee:
           (
             p.map: particle =>
               val (size, material) = particle.age match
-              case x if x < 60 => (4, Assets.assets.ParticleSMaterial)
-              case x if x < 100 => (8, Assets.assets.ParticleMMaterial)
-              case _ => (16, Assets.assets.ParticleLMaterial)
+                case x if x < 60  => (4, Assets.assets.ParticleSMaterial)
+                case x if x < 100 => (8, Assets.assets.ParticleMMaterial)
+                case _            => (16, Assets.assets.ParticleLMaterial)
               Graphic(
                 size,
                 size,
