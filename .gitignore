@@ -8,4 +8,6 @@ hs_err_pid*
 .bsp
 .metals
 target
-project/project
+metals.sbt
+.DS_Store
+.nova
